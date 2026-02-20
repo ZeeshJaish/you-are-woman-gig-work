@@ -40,6 +40,80 @@
             position: relative;
         }
 
+        /* --- Preloader Styles --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            background-image: radial-gradient(circle at center, var(--bg-light) 0%, var(--bg-dark) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-wrapper {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .loader-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--gold-mid);
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        .loader-ring::before {
+            content: '';
+            position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--gold-light);
+            animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite reverse;
+        }
+
+        .preloader-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--gold-mid);
+            animation: pulse-glow 1.5s infinite alternate;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.6; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2)); }
+            100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8)); }
+        }
+
         /* Subtle Texture Overlay for Cinematic Print Vibe */
         .texture-overlay {
             position: fixed;
@@ -316,6 +390,8 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-register-small:hover {
@@ -323,7 +399,8 @@
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
 
-        .btn-register::after {
+        .btn-register::after,
+        .btn-register-small::after {
             content: '';
             position: absolute;
             top: 0;
@@ -494,6 +571,15 @@
     </style>
 </head>
 <body>
+
+    <!-- Stylish Theme Preloader -->
+    <div id="preloader">
+        <div class="loader-wrapper">
+            <div class="loader-ring"></div>
+        </div>
+        <div class="preloader-text">WOMAN</div>
+    </div>
+
     <!-- Custom Cursor elements -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
@@ -597,8 +683,23 @@
 
     </div>
 
-    <!-- JavaScript for Custom Lazy Cursor -->
+    <!-- JavaScript logic -->
     <script>
+        // --- Preloader Logic ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            // Adding a brief timeout to ensure the cool animation is actually visible 
+            // even if the page loads instantly.
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                // Remove from DOM slightly after fade out animation completes
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 800);
+            }, 1000); 
+        });
+
+        // --- Custom Lazy Cursor Logic ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
@@ -622,8 +723,9 @@
             let distX = mouseX - outlineX;
             let distY = mouseY - outlineY;
             
-            outlineX += distX * 0.15; // The smaller the number, the "lazier" it is
-            outlineY += distY * 0.15;
+            // Reduced from 0.15 to 0.06 to make the cursor trail lazier and smoother
+            outlineX += distX * 0.06; 
+            outlineY += distY * 0.06;
 
             cursorOutline.style.left = `${outlineX}px`;
             cursorOutline.style.top = `${outlineY}px`;
