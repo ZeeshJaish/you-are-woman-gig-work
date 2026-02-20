@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Are Woman | A Call to Identity</title>
+    <style>
+        /* --- Import Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        /* --- CSS Variables --- */
+        :root {
+            --bg-dark: #1A050A;
+            --bg-light: #4A1220;
+            --gold-light: #FCEABB;
+            --gold-mid: #D4AF37;
+            --gold-dark: #8C6A1C;
+            --text-white: #F8F8F8;
+            --text-dim: #CCCCCC;
+            --gold-gradient: linear-gradient(to bottom, #FCEABB, #D4AF37, #8C6A1C);
+            --gold-gradient-horizontal: linear-gradient(90deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        }
+
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at top center, var(--bg-light) 0%, var(--bg-dark) 100%);
+            background-attachment: fixed;
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle Texture Overlay for Cinematic Print Vibe */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Utility Classes --- */
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--gold-mid); /* Fallback */
+            text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .gold-text-flat {
+            color: var(--gold-mid);
+        }
+
+        /* --- Hero Header Section --- */
+        .header-section {
+            text-align: center;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .top-subtitle {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: -1rem;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(4rem, 15vw, 11rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.05em;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Middle Section (Split Text + Host) --- */
+        .hero-middle {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            width: 100%;
+            margin-top: -8%; /* Creates the overlapping effect */
+            z-index: 2;
+            position: relative;
+        }
+
+        .side-text {
+            font-size: clamp(1rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .side-text.left { text-align: right; padding-right: 2rem; }
+        .side-text.right { text-align: left; padding-left: 2rem; }
+
+        .host-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .host-img {
+            width: clamp(200px, 35vw, 400px);
+            height: clamp(250px, 45vw, 500px);
+            object-fit: cover;
+            border-radius: 4px;
+            /* Using a placeholder that matches the color scheme */
+            background-color: #2A0810;
+            border-bottom: 3px solid transparent; /* Prevents layout shift */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            /* A subtle mask effect to blend the bottom if desired, but standard img works too */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .host-name {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 500;
+            margin-top: 1rem;
+            color: #C67843; /* Slightly darker orange/gold from flyer */
+        }
+
+        /* --- Speakers Grid Section --- */
+        .speakers-section {
+            width: 100%;
+            margin-top: 4rem;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .speaker-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .speaker-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border: 3px solid var(--gold-mid);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+            margin-bottom: 1.5rem;
+            background-color: #1A050A;
+            transition: transform 0.3s ease;
+        }
+
+        .speaker-card:hover .speaker-img {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .speaker-name {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--gold-light);
+            text-transform: capitalize;
+        }
+
+        /* --- Details Section --- */
+        .details-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ministry-text {
+            color: #D68F4B; /* Matched to flyer's orange/gold tone */
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .event-info {
+            margin-top: 1.5rem;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--text-white);
+        }
+
+        .event-time {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-top: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Footer & CTA Section --- */
+        .cta-section {
+            width: 100%;
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 4rem;
+        }
+
+        .btn-register {
+            background: var(--gold-gradient-horizontal);
+            color: #000;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            letter-spacing: 0.1em;
+            padding: 1rem 2rem;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .btn-register:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .footer-link {
+            margin-top: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--text-white);
+        }
+
+        /* --- Sticky Navigation & Cool Animations --- */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 5, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .btn-register-small {
+            background: var(--gold-gradient-horizontal);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-register-small:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-register::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Custom Lazy Cursor --- */
+        @media (pointer: fine) {
+            body, a, button {
+                cursor: none;
+            }
+        }
+
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold-mid);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-light);
+        }
+
+        /* --- Map Section --- */
+        .map-section {
+            width: 100%;
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .map-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.05em;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 1000px;
+            border: 3px solid var(--gold-mid);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background-color: var(--bg-dark);
+        }
+        
+        .map-container iframe {
+            display: block;
+            width: 100%;
+            height: clamp(300px, 40vw, 450px);
+            /* Blends the map visually into the maroon/gold theme */
+            filter: grayscale(0.6) contrast(1.1) sepia(0.2) hue-rotate(-20deg); 
+            transition: filter 0.3s ease;
+        }
+
+        .map-container iframe:hover {
+            filter: grayscale(0) contrast(1) sepia(0) hue-rotate(0deg); /* Reveals true colors on hover */
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .speakers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem 2rem;
+            }
+            .hero-middle {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: -2%;
+            }
+            .side-text.left, .side-text.right {
+                text-align: center;
+                padding: 0;
+            }
+            /* Change order so image is in the middle of the texts on mobile */
+            .side-text.left { order: 1; }
+            .host-container { order: 2; margin-top: 0; }
+            .side-text.right { order: 3; }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 5rem 1rem 2rem; /* Tighter padding on mobile */
+            }
+            .speakers-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem; /* Reduced gap so less scrolling required */
+                padding: 0;
+            }
+            .speaker-img {
+                max-width: 260px; /* Elegant sizing for narrow phone screens */
+            }
+            .btn-register {
+                padding: 1rem 1rem;
+                font-size: 1.3rem; /* Ensures long text doesn't break into two awkward lines */
+            }
+            .sticky-nav {
+                padding: 0.8rem 1rem;
+            }
+            .nav-brand {
+                font-size: 0.9rem; /* Fits smaller screens beautifully */
+            }
+            .btn-register-small {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem; /* Keeps button compact alongside title */
+            }
+            .map-container iframe {
+                height: 300px; /* Shorter map on mobile to save vertical swipe space */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav reveal">
+        <div class="nav-brand gold-text">YOU ARE WOMAN</div>
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="btn-register-small">Register Now</a>
+    </nav>
+
+    <!-- Background Texture -->
+    <div class="texture-overlay"></div>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="header-section reveal">
+            <h2 class="top-subtitle">You Are</h2>
+            <h1 class="main-title gold-text">WOMAN</h1>
+        </header>
+
+        <!-- Middle Overlapping Section -->
+        <div class="hero-middle reveal delay-1">
+            <div class="side-text left">A Call to Identity</div>
+            
+            <div class="host-container">
+                <!-- Replace src with actual host image -->
+                <img src="https://placehold.co/400x500/2A0810/D4AF37?text=Host+Image" alt="Tabitha Taylor - Host" class="host-img">
+                <div class="host-name">Tabitha Taylor - Host</div>
+            </div>
+
+            <div class="side-text right">Healing & Restoration</div>
+        </div>
+
+        <!-- Speakers Grid -->
+        <section class="speakers-section reveal delay-2">
+            <div class="speakers-grid">
+                
+                <!-- Speaker 1 -->
+                <div class="speaker-card">
+                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Dr.+Toni" alt="Dr. Toni Strong" class="speaker-img">
+                    <div class="speaker-name">Dr. Toni<br>Strong</div>
+                </div>
+
+                <!-- Speaker 2 -->
+                <div class="speaker-card">
+                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Prophetess+Sharell" alt="Prophetess Sharell Brownlee" class="speaker-img">
+                    <div class="speaker-name">Prophetess<br>Sharell Brownlee</div>
+                </div>
+
+                <!-- Speaker 3 -->
+                <div class="speaker-card">
+                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Pastor+Doris" alt="Pastor Doris Bracely" class="speaker-img">
+                    <div class="speaker-name">Pastor<br>Doris Bracely</div>
+                </div>
+
+                <!-- Speaker 4 -->
+                <div class="speaker-card">
+                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Dr.+Kanoi" alt="Dr. Kanoi Clark" class="speaker-img">
+                    <div class="speaker-name">Dr. Kanoi<br>Clark</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Ministry & Event Details -->
+        <section class="details-section reveal delay-3">
+            <div class="ministry-text">Minister of music: Cynthia Woodson</div>
+            <div class="ministry-text">Minister of movement: Without Borders Flag Ministry</div>
+            
+            <br>
+            
+            <div class="event-info">
+                Women's Conference | April 25 | Renaissance Hotel - St. Louis
+            </div>
+            <div class="event-time">
+                Time: 10:00AM–3:00PM CST
+            </div>
+        </section>
+
+        <!-- Event Location Map -->
+        <section class="map-section reveal delay-3">
+            <h3 class="map-title gold-text-flat">Event Location</h3>
+            <div class="map-container">
+                <!-- Google Maps Embed for Renaissance St. Louis Airport Hotel -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.167828063231!2d-90.35921838465545!3d38.74836656534571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df33eb439a3f9b%3A0xc3cf902c673eb8b2!2sRenaissance%20St.%20Louis%20Airport%20Hotel!5e0!3m2!1sen!2sus!4v1682460123456!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <!-- CTA & Footer -->
+        <footer class="cta-section">
+            <!-- ADD YOUR GOOGLE FORM LINK IN THE HREF BELOW -->
+            <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noopener noreferrer" class="btn-register">
+                Register Now
+            </a>
+            
+            <a href="https://www.google.com/search?q=youarewoman.com" target="_blank" class="footer-link">
+                youarewoman.com
+            </a>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Custom Lazy Cursor -->
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let outlineX = 0;
+        let outlineY = 0;
+
+        // Track Mouse
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Move dot instantly
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        function animateCursor() {
+            // Linear Interpolation (Lerp) creates the smooth "lazy" trailing effect
+            let distX = mouseX - outlineX;
+            let distY = mouseY - outlineY;
+            
+            outlineX += distX * 0.15; // The smaller the number, the "lazier" it is
+            outlineY += distY * 0.15;
+
+            cursorOutline.style.left = `${outlineX}px`;
+            cursorOutline.style.top = `${outlineY}px`;
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        // Feature detection: Only activate on devices with a real mouse (ignore touchscreens)
+        if (window.matchMedia("(pointer: fine)").matches) {
+            animateCursor();
+            
+            // Expand outline when hovering over interactive elements
+            const interactives = document.querySelectorAll('a, button, iframe');
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('hover');
+                });
+            });
+        } else {
+            // Hide custom cursors for touch users to prevent it getting stuck on tap
+            cursorDot.style.display = 'none';
+            cursorOutline.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
