@@ -6,7 +6,7 @@
     <title>You Are Woman | A Call to Identity</title>
     <style>
         /* --- Import Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
         /* --- CSS Variables --- */
         :root {
@@ -19,6 +19,7 @@
             --text-dim: #CCCCCC;
             --gold-gradient: linear-gradient(to bottom, #FCEABB, #D4AF37, #8C6A1C);
             --gold-gradient-horizontal: linear-gradient(90deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --section-padding: 6rem 1.5rem;
         }
 
         /* --- Global Reset & Base Styles --- */
@@ -38,6 +39,18 @@
             flex-direction: column;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-weight: 300;
         }
 
         /* --- Preloader Styles --- */
@@ -93,34 +106,25 @@
         }
 
         .preloader-text {
-            font-family: 'Cinzel', serif;
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 0.3em;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: var(--gold-mid);
             animation: pulse-glow 1.5s infinite alternate;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
+        @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse-glow {
             0% { opacity: 0.6; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2)); }
             100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8)); }
         }
 
-        /* Subtle Texture Overlay for Cinematic Print Vibe */
+        /* Texture Overlay */
         .texture-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
             z-index: 0;
@@ -132,10 +136,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 6rem 1.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: var(--section-padding);
         }
 
         /* --- Utility Classes --- */
@@ -144,221 +145,72 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: var(--gold-mid); /* Fallback */
+            color: var(--gold-mid);
             text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.2);
         }
 
-        .gold-text-flat {
-            color: var(--gold-mid);
-        }
-
-        /* --- Hero Header Section --- */
-        .header-section {
-            text-align: center;
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        .top-subtitle {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            margin-bottom: -1rem;
-            text-transform: uppercase;
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(4rem, 15vw, 11rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: 0.05em;
-            margin-bottom: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* --- Middle Section (Split Text + Host) --- */
-        .hero-middle {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            width: 100%;
-            margin-top: -8%; /* Creates the overlapping effect */
-            z-index: 2;
-            position: relative;
-        }
-
-        .side-text {
-            font-size: clamp(1rem, 2.5vw, 1.8rem);
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            text-align: center;
-        }
-
-        .side-text.left { text-align: right; padding-right: 2rem; }
-        .side-text.right { text-align: left; padding-left: 2rem; }
-
-        .host-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .host-img {
-            width: clamp(200px, 35vw, 400px);
-            height: clamp(250px, 45vw, 500px);
-            object-fit: cover;
-            border-radius: 4px;
-            /* Using a placeholder that matches the color scheme */
-            background-color: #2A0810;
-            border-bottom: 3px solid transparent; /* Prevents layout shift */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            /* A subtle mask effect to blend the bottom if desired, but standard img works too */
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .host-name {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            font-weight: 500;
-            margin-top: 1rem;
-            color: #C67843; /* Slightly darker orange/gold from flyer */
-        }
-
-        /* --- Speakers Grid Section --- */
-        .speakers-section {
-            width: 100%;
-            margin-top: 4rem;
-        }
-
-        .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .speaker-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .speaker-img {
-            width: 100%;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            border: 3px solid var(--gold-mid);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+        .gold-text-flat { color: var(--gold-mid); }
+        .text-center { text-align: center; }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
-            background-color: #1A050A;
-            transition: transform 0.3s ease;
-        }
-
-        .speaker-card:hover .speaker-img {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .speaker-name {
-            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--gold-light);
-            text-transform: capitalize;
-        }
-
-        /* --- Details Section --- */
-        .details-section {
             text-align: center;
-            margin-top: 4rem;
-            padding: 2rem 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
         }
 
-        .ministry-text {
-            color: #D68F4B; /* Matched to flyer's orange/gold tone */
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            font-weight: 500;
-            letter-spacing: 0.05em;
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--gold-mid);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            display: block;
         }
 
-        .event-info {
-            margin-top: 1.5rem;
-            font-size: clamp(1rem, 1.8vw, 1.3rem);
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: var(--text-white);
-        }
-
-        .event-time {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            font-weight: 300;
-            color: var(--text-dim);
-            margin-top: 0.5rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* --- Footer & CTA Section --- */
-        .cta-section {
-            width: 100%;
-            margin-top: 3rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 4rem;
-        }
-
-        .btn-register {
+        /* --- Buttons --- */
+        .btn-primary {
+            display: inline-block;
             background: var(--gold-gradient-horizontal);
             color: #000;
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: 1.2rem;
             letter-spacing: 0.1em;
-            padding: 1rem 2rem;
-            width: 100%;
-            max-width: 100%;
-            text-align: center;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-transform: uppercase;
             position: relative;
             overflow: hidden;
-            border-radius: 4px;
+            border: none;
+            cursor: none; /* For custom cursor */
         }
 
-        .btn-register:hover {
-            transform: scale(1.02);
+        .btn-primary:hover {
+            transform: scale(1.02) translateY(-2px);
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
             filter: brightness(1.1);
         }
 
-        .footer-link {
-            margin-top: 1.5rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
+        .btn-primary::after, .btn-register-small::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: shine 3s infinite;
         }
 
-        .footer-link:hover {
-            color: var(--text-white);
-        }
+        @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
 
-        /* --- Sticky Navigation & Cool Animations --- */
+        /* --- Sticky Navigation --- */
         .sticky-nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 0; left: 0; width: 100%;
             background: rgba(26, 5, 10, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -389,366 +241,643 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             position: relative;
             overflow: hidden;
+            cursor: none;
         }
+        .btn-register-small:hover { transform: scale(1.05); }
 
-        .btn-register-small:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .btn-register::after,
-        .btn-register-small::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-20deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { left: -100%; }
-            20% { left: 200%; }
-            100% { left: 200%; }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
+        /* --- Scroll Reveal Animation --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease-out forwards;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* =========================================
+           PAGE SECTIONS
+           ========================================= */
 
-        /* --- Custom Lazy Cursor --- */
-        @media (pointer: fine) {
-            body, a, button {
-                cursor: none;
-            }
-        }
-
-        .cursor-dot,
-        .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--gold-mid);
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(212, 175, 55, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        
-        .cursor-outline.hover {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(212, 175, 55, 0.1);
-            border-color: var(--gold-light);
-        }
-
-        /* --- Map Section --- */
-        .map-section {
-            width: 100%;
-            margin-top: 5rem;
+        /* --- 1. Hero Section --- */
+        .hero-section {
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 2rem;
+            text-align: center;
+            padding-top: 6rem;
         }
 
-        .map-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+        .top-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            margin-bottom: -1rem;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: clamp(4rem, 14vw, 11rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-emotional-hook {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-dim);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-middle {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        .side-text {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 400;
             letter-spacing: 0.05em;
         }
 
+        .side-text.left { text-align: right; padding-right: 2rem; }
+        .side-text.right { text-align: left; padding-left: 2rem; }
+
+        .host-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .host-img {
+            width: clamp(200px, 30vw, 350px);
+            height: clamp(250px, 40vw, 450px);
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #2A0810;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+
+        .host-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            color: var(--gold-mid);
+        }
+
+        /* --- 2. Promo Video Section --- */
+        .video-section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            position: relative;
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- 3. About Section --- */
+        .about-section {
+            padding: var(--section-padding);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            background: rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .about-content h2 { text-align: left; margin-bottom: 1.5rem; }
+        .about-content p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .about-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--gold-dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* --- 4. What to Expect Section --- */
+        .expect-section { padding: var(--section-padding); }
+        .expect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .expect-card {
+            background: rgba(26, 5, 10, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .expect-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-mid);
+        }
+        .expect-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-mid);
+        }
+        .expect-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- 5. Speakers Section --- */
+        .speakers-section { padding: var(--section-padding); }
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .speaker-card { text-align: center; }
+        .speaker-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border: 2px solid var(--gold-dark);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .speaker-card:hover .speaker-img {
+            transform: translateY(-5px);
+            border-color: var(--gold-light);
+        }
+        .speaker-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+        .speaker-role {
+            font-size: 0.9rem;
+            color: var(--gold-mid);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .speaker-bio {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        /* --- 6. Pricing & Registration Section --- */
+        .pricing-section {
+            padding: var(--section-padding);
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+        .pricing-card {
+            background: linear-gradient(145deg, #2A0810, #1A050A);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover { transform: translateY(-10px); border-color: var(--gold-mid); }
+        .pricing-card.featured {
+            border: 2px solid var(--gold-mid);
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover { transform: scale(1.05) translateY(-10px); }
+        
+        .ticket-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+        }
+        .ticket-price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .ticket-price span { font-size: 1.5rem; vertical-align: super; color: var(--gold-mid); }
+        .ticket-features {
+            list-style: none;
+            margin: 2rem 0;
+            color: var(--text-dim);
+        }
+        .ticket-features li { margin-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.8rem; }
+        .vendor-notice {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: var(--gold-mid);
+            font-style: italic;
+        }
+
+        /* --- 7. Event Details & Map --- */
+        .details-section { padding: var(--section-padding); text-align: center; }
+        .info-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        .info-block h4 { color: var(--gold-mid); font-family: 'Montserrat', sans-serif; letter-spacing: 0.1em; margin-bottom: 0.5rem;}
+        .info-block p { color: #fff; font-size: 1.2rem; margin-bottom: 1.5rem; }
+        
         .map-container {
             width: 100%;
             max-width: 1000px;
-            border: 3px solid var(--gold-mid);
+            margin: 0 auto;
+            border: 2px solid var(--gold-mid);
             border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            background-color: var(--bg-dark);
         }
-        
         .map-container iframe {
-            display: block;
-            width: 100%;
-            height: clamp(300px, 40vw, 450px);
-            /* Blends the map visually into the maroon/gold theme */
+            display: block; width: 100%; height: 400px;
             filter: grayscale(0.6) contrast(1.1) sepia(0.2) hue-rotate(-20deg); 
             transition: filter 0.3s ease;
         }
+        .map-container iframe:hover { filter: grayscale(0) contrast(1) sepia(0) hue-rotate(0deg); }
 
-        .map-container iframe:hover {
-            filter: grayscale(0) contrast(1) sepia(0) hue-rotate(0deg); /* Reveals true colors on hover */
+        /* --- 8. Final CTA --- */
+        .final-cta-section {
+            padding: 8rem 1.5rem;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(74, 18, 32, 0.8) 0%, #000 100%);
+            border-top: 2px solid var(--gold-dark);
         }
+        .final-cta-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1rem;
+        }
+        .final-cta-text {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- Custom Lazy Cursor --- */
+        @media (pointer: fine) { body, a, button { cursor: none; } }
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--gold-mid); }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 2px solid rgba(212, 175, 55, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .cursor-outline.hover { width: 60px; height: 60px; background-color: rgba(212, 175, 55, 0.1); border-color: var(--gold-light); }
 
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
-            .speakers-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 3rem 2rem;
-            }
-            .hero-middle {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                margin-top: -2%;
-            }
-            .side-text.left, .side-text.right {
-                text-align: center;
-                padding: 0;
-            }
-            /* Change order so image is in the middle of the texts on mobile */
+            .about-section { grid-template-columns: 1fr; text-align: center; }
+            .about-content h2 { text-align: center; }
+            .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-10px); }
+            .hero-middle { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem;}
+            .side-text.left, .side-text.right { text-align: center; padding: 0; }
             .side-text.left { order: 1; }
-            .host-container { order: 2; margin-top: 0; }
+            .host-container { order: 2; }
             .side-text.right { order: 3; }
         }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 5rem 1rem 2rem; /* Tighter padding on mobile */
-            }
-            .speakers-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem; /* Reduced gap so less scrolling required */
-                padding: 0;
-            }
-            .speaker-img {
-                max-width: 260px; /* Elegant sizing for narrow phone screens */
-            }
-            .btn-register {
-                padding: 1rem 1rem;
-                font-size: 1.3rem; /* Ensures long text doesn't break into two awkward lines */
-            }
-            .sticky-nav {
-                padding: 0.8rem 1rem;
-            }
-            .nav-brand {
-                font-size: 0.9rem; /* Fits smaller screens beautifully */
-            }
-            .btn-register-small {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem; /* Keeps button compact alongside title */
-            }
-            .map-container iframe {
-                height: 300px; /* Shorter map on mobile to save vertical swipe space */
-            }
+            :root { --section-padding: 4rem 1rem; }
+            .speakers-grid { grid-template-columns: 1fr; max-width: 320px; margin: 3rem auto 0; }
+            .btn-primary { width: 100%; padding: 1.2rem 1rem; font-size: 1.1rem; }
+            .video-container { height: 220px; }
+            .ticket-price { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Stylish Theme Preloader -->
+    <!-- Preloader -->
     <div id="preloader">
-        <div class="loader-wrapper">
-            <div class="loader-ring"></div>
-        </div>
+        <div class="loader-wrapper"><div class="loader-ring"></div></div>
         <div class="preloader-text">WOMAN</div>
     </div>
 
-    <!-- Custom Cursor elements -->
+    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Sticky Navigation -->
-    <nav class="sticky-nav reveal">
+    <!-- Sticky Nav -->
+    <nav class="sticky-nav">
         <div class="nav-brand gold-text">YOU ARE WOMAN</div>
-        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="btn-register-small">Register Now</a>
+        <a href="#register" class="btn-register-small">Secure Seat</a>
     </nav>
 
-    <!-- Background Texture -->
+    <!-- Texture Background -->
     <div class="texture-overlay"></div>
 
-    <div class="container">
+    <!-- 1. Hero Section -->
+    <section class="container hero-section reveal">
+        <h2 class="top-subtitle reveal delay-1">You Are</h2>
+        <h1 class="main-title gold-text reveal delay-1">WOMAN</h1>
+        <p class="hero-emotional-hook reveal delay-2">
+            Step into a divine encounter designed to heal, restore, and awaken the true you. This is more than a conference; it is a profound call to remember your identity in Christ.
+        </p>
+        <a href="#register" class="btn-primary reveal delay-3">Register Now</a>
         
-        <!-- Header -->
-        <header class="header-section reveal">
-            <h2 class="top-subtitle">You Are</h2>
-            <h1 class="main-title gold-text">WOMAN</h1>
-        </header>
-
-        <!-- Middle Overlapping Section -->
-        <div class="hero-middle reveal delay-1">
-            <div class="side-text left">A Call to Identity</div>
-            
+        <div class="hero-middle reveal delay-3" style="margin-top: 4rem;">
+            <div class="side-text left gold-text-flat">A Call to Identity</div>
             <div class="host-container">
-                <!-- Replace src with actual host image -->
-                <img src="https://placehold.co/400x500/2A0810/D4AF37?text=Host+Image" alt="Tabitha Taylor - Host" class="host-img">
+                <img src="https://placehold.co/400x500/2A0810/D4AF37?text=Tabitha+Taylor" alt="Tabitha Taylor - Host" class="host-img">
                 <div class="host-name">Tabitha Taylor - Host</div>
             </div>
+            <div class="side-text right gold-text-flat">Healing & Restoration</div>
+        </div>
+    </section>
 
-            <div class="side-text right">Healing & Restoration</div>
+    <!-- 2. Promo Video Section -->
+    <section class="container video-section reveal">
+        <span class="section-subtitle">Experience the Vision</span>
+        <h2 class="section-title gold-text">A Glimpse of the Gathering</h2>
+        <div class="video-container reveal delay-1">
+            <!-- Replace src with actual YouTube/Vimeo embed link -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" title="Promo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="reveal delay-2" style="max-width: 600px; margin: 0 auto 2rem;">Watch our 60-second vision cast to see the heart behind the movement.</p>
+        <a href="#register" class="btn-primary reveal delay-2">Join The Movement</a>
+    </section>
+
+    <!-- 3. About Section -->
+    <section class="container about-section reveal">
+        <div class="about-content reveal delay-1">
+            <span class="section-subtitle" style="text-align: left;">The Mission</span>
+            <h2 class="section-title gold-text" style="text-align: left; font-size: clamp(2rem, 4vw, 3rem);">What is You Are Woman?</h2>
+            <p><strong>You Are Woman</strong> is a sacred gathering designed specifically for women seeking a profound touch from God. It is an intentional space created for healing, restoration, and the rediscovery of your God-given identity.</p>
+            <p>Whether you are in a season of waiting, a season of healing, or stepping into a new level of purpose, this conference is for you. We are gathering to break chains, renew minds, and empower you to walk confidently in who you were created to be.</p>
+            <p>This isn't just another event on the calendar. It's a transformative weekend marked by authentic community, powerful worship, and uncompromised truth.</p>
+        </div>
+        <div class="reveal delay-2">
+            <!-- Placeholder for an emotional worship/gathering image -->
+            <img src="https://placehold.co/600x450/2A0810/D4AF37?text=Emotional+Gathering+Image" alt="Women worshiping" class="about-image">
+        </div>
+    </section>
+
+    <!-- 4. What to Expect Section -->
+    <section class="container expect-section reveal">
+        <span class="section-subtitle">The Experience</span>
+        <h2 class="section-title gold-text">What To Expect</h2>
+        <div class="expect-grid">
+            <div class="expect-card reveal delay-1">
+                <div class="expect-icon">📖</div>
+                <h3>Christ-Centered Teaching</h3>
+                <p>Deep, biblical truths delivered with grace to anchor your soul and elevate your spirit.</p>
+            </div>
+            <div class="expect-card reveal delay-2">
+                <div class="expect-icon">🕊️</div>
+                <h3>Healing & Restoration</h3>
+                <p>Safe spaces for prayer, reflection, and encountering the healing presence of the Holy Spirit.</p>
+            </div>
+            <div class="expect-card reveal delay-3">
+                <div class="expect-icon">🙌</div>
+                <h3>Worship & Ministry</h3>
+                <p>Powerful, unhurried times of worship led by Minister of Music Cynthia Woodson & Without Borders.</p>
+            </div>
+            <div class="expect-card reveal delay-1">
+                <div class="expect-icon">🎤</div>
+                <h3>Panel Discussion & Q&A</h3>
+                <p>Candid, transformative conversations addressing real issues women face today.</p>
+            </div>
+            <div class="expect-card reveal delay-2">
+                <div class="expect-icon">🤝</div>
+                <h3>Community Connection</h3>
+                <p>Meet and connect with like-minded women pursuing growth and purpose.</p>
+            </div>
+            <div class="expect-card reveal delay-3">
+                <div class="expect-icon">🛍️</div>
+                <h3>Vendor Experience & Lunch</h3>
+                <p>Enjoy a curated vendor shopping experience and a complimentary catered lunch.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Speakers Section -->
+    <section class="container speakers-section reveal">
+        <span class="section-subtitle">The Voices</span>
+        <h2 class="section-title gold-text">Meet Our Speakers</h2>
+        <div class="speakers-grid">
+            <div class="speaker-card reveal delay-1">
+                <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Dr.+Toni" alt="Dr. Toni Strong" class="speaker-img">
+                <h3 class="speaker-name">Dr. Toni Strong</h3>
+                <div class="speaker-role">Guest Speaker</div>
+                <p class="speaker-bio">An empowering voice dedicated to inner healing and spiritual fortitude.</p>
+            </div>
+            <div class="speaker-card reveal delay-2">
+                <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Prophetess+Sharell" alt="Prophetess Sharell Brownlee" class="speaker-img">
+                <h3 class="speaker-name">Prophetess Sharell Brownlee</h3>
+                <div class="speaker-role">Guest Speaker</div>
+                <p class="speaker-bio">Bringing prophetic insight and a fiery passion for women's restoration.</p>
+            </div>
+            <div class="speaker-card reveal delay-3">
+                <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Pastor+Doris" alt="Pastor Doris Bracely" class="speaker-img">
+                <h3 class="speaker-name">Pastor Doris Bracely</h3>
+                <div class="speaker-role">Guest Speaker</div>
+                <p class="speaker-bio">A seasoned pastor leading with wisdom, love, and a mother's heart.</p>
+            </div>
+            <div class="speaker-card reveal delay-1">
+                <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Dr.+Kanoi" alt="Dr. Kanoi Clark" class="speaker-img">
+                <h3 class="speaker-name">Dr. Kanoi Clark</h3>
+                <div class="speaker-role">Guest Speaker</div>
+                <p class="speaker-bio">Equipping women with practical tools to marry faith and mental wellness.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Pricing & Registration -->
+    <section id="register" class="container pricing-section reveal">
+        <span class="section-subtitle">Join Us</span>
+        <h2 class="section-title gold-text">Secure Your Seat</h2>
+        <p class="text-center" style="max-width: 600px; margin: 0 auto;">Seating is limited to preserve the intimacy of the gathering. Choose your experience below.</p>
+        
+        <div class="pricing-grid">
+            <!-- General Admission -->
+            <div class="pricing-card reveal delay-1">
+                <h3 class="ticket-name">General Admission</h3>
+                <div class="ticket-price"><span>$</span>35</div>
+                <ul class="ticket-features">
+                    <li>Full Access to All Sessions</li>
+                    <li>Worship & Ministry</li>
+                    <li>Panel Discussions</li>
+                    <li>Complimentary Lunch Included</li>
+                    <li>Access to Vendor Experience</li>
+                </ul>
+                <a href="YOUR_GOOGLE_FORM_LINK" target="_blank" class="btn-primary" style="width: 100%; padding: 1rem;">Register GA</a>
+            </div>
+
+            <!-- Special Seating (Featured) -->
+            <div class="pricing-card featured reveal delay-2">
+                <h3 class="ticket-name">Special Seating</h3>
+                <div class="ticket-price"><span>$</span>40</div>
+                <ul class="ticket-features">
+                    <li><strong>Premium Reserved Seating</strong></li>
+                    <li>Full Access to All Sessions</li>
+                    <li>Worship & Ministry</li>
+                    <li>Complimentary Lunch Included</li>
+                    <li>Access to Vendor Experience</li>
+                </ul>
+                <a href="YOUR_GOOGLE_FORM_LINK" target="_blank" class="btn-primary" style="width: 100%; padding: 1rem;">Reserve Premium</a>
+            </div>
+        </div>
+        
+        <p class="vendor-notice reveal delay-3">Are you a business owner? Limited <strong>Vendor Tables</strong> are available. Click register to view details.</p>
+    </section>
+
+    <!-- 7. Event Details & Map -->
+    <section class="container details-section reveal">
+        <span class="section-subtitle">The Details</span>
+        <h2 class="section-title gold-text">When & Where</h2>
+        
+        <div class="info-block reveal delay-1">
+            <h4>Date & Time</h4>
+            <p><strong>April 25th</strong><br>10:00 AM – 3:00 PM CST</p>
+            
+            <h4>Location</h4>
+            <p><strong>Renaissance Hotel - St. Louis</strong><br>St. Louis Airport location</p>
+            
+            <h4>Ministry Team</h4>
+            <p style="font-size: 1rem; color: var(--text-dim);">
+                Minister of Music: Cynthia Woodson<br>
+                Minister of Movement: Without Borders Flag Ministry
+            </p>
         </div>
 
-        <!-- Speakers Grid -->
-        <section class="speakers-section reveal delay-2">
-            <div class="speakers-grid">
-                
-                <!-- Speaker 1 -->
-                <div class="speaker-card">
-                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Dr.+Toni" alt="Dr. Toni Strong" class="speaker-img">
-                    <div class="speaker-name">Dr. Toni<br>Strong</div>
-                </div>
+        <div class="map-container reveal delay-2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.167828063231!2d-90.35921838465545!3d38.74836656534571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df33eb439a3f9b%3A0xc3cf902c673eb8b2!2sRenaissance%20St.%20Louis%20Airport%20Hotel!5e0!3m2!1sen!2sus!4v1682460123456!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
 
-                <!-- Speaker 2 -->
-                <div class="speaker-card">
-                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Prophetess+Sharell" alt="Prophetess Sharell Brownlee" class="speaker-img">
-                    <div class="speaker-name">Prophetess<br>Sharell Brownlee</div>
-                </div>
-
-                <!-- Speaker 3 -->
-                <div class="speaker-card">
-                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Pastor+Doris" alt="Pastor Doris Bracely" class="speaker-img">
-                    <div class="speaker-name">Pastor<br>Doris Bracely</div>
-                </div>
-
-                <!-- Speaker 4 -->
-                <div class="speaker-card">
-                    <img src="https://placehold.co/300x380/2A0810/D4AF37?text=Dr.+Kanoi" alt="Dr. Kanoi Clark" class="speaker-img">
-                    <div class="speaker-name">Dr. Kanoi<br>Clark</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Ministry & Event Details -->
-        <section class="details-section reveal delay-3">
-            <div class="ministry-text">Minister of music: Cynthia Woodson</div>
-            <div class="ministry-text">Minister of movement: Without Borders Flag Ministry</div>
-            
-            <br>
-            
-            <div class="event-info">
-                Women's Conference | April 25 | Renaissance Hotel - St. Louis
-            </div>
-            <div class="event-time">
-                Time: 10:00AM–3:00PM CST
-            </div>
-        </section>
-
-        <!-- Event Location Map -->
-        <section class="map-section reveal delay-3">
-            <h3 class="map-title gold-text-flat">Event Location</h3>
-            <div class="map-container">
-                <!-- Google Maps Embed for Renaissance St. Louis Airport Hotel -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.167828063231!2d-90.35921838465545!3d38.74836656534571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df33eb439a3f9b%3A0xc3cf902c673eb8b2!2sRenaissance%20St.%20Louis%20Airport%20Hotel!5e0!3m2!1sen!2sus!4v1682460123456!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </section>
-
-        <!-- CTA & Footer -->
-        <footer class="cta-section">
-            <!-- ADD YOUR GOOGLE FORM LINK IN THE HREF BELOW -->
-            <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noopener noreferrer" class="btn-register">
-                Register Now
-            </a>
-            
-            <a href="https://www.google.com/search?q=youarewoman.com" target="_blank" class="footer-link">
+    <!-- 8. Final CTA Section -->
+    <footer class="final-cta-section reveal">
+        <h2 class="final-cta-title gold-text">You Are Woman.</h2>
+        <p class="final-cta-text">A Call to Identity. A Divine Appointment.</p>
+        <a href="#register" class="btn-primary" style="font-size: 1.5rem; padding: 1.2rem 3rem;">Secure Your Seat Now</a>
+        
+        <div style="margin-top: 4rem;">
+            <a href="https://www.google.com/search?q=youarewoman.com" target="_blank" style="color: var(--text-dim); text-decoration: none; font-size: 1rem; letter-spacing: 0.1em; transition: color 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">
                 youarewoman.com
             </a>
-        </footer>
-
-    </div>
+        </div>
+    </footer>
 
     <!-- JavaScript logic -->
     <script>
         // --- Preloader Logic ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
-            // Adding a brief timeout to ensure the cool animation is actually visible 
-            // even if the page loads instantly.
             setTimeout(() => {
                 preloader.classList.add('hidden');
-                // Remove from DOM slightly after fade out animation completes
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 800);
-            }, 1000); 
+                setTimeout(() => { preloader.style.display = 'none'; }, 800);
+            }, 800); 
+        });
+
+        // --- Scroll Reveal Logic (Intersection Observer) ---
+        // This is what makes the page feel like a journey. Elements only animate when scrolled to.
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: stop observing once revealed so it doesn't repeat on scroll up
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
         });
 
         // --- Custom Lazy Cursor Logic ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let outlineX = 0;
-        let outlineY = 0;
-
-        // Track Mouse
         window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Move dot instantly
+            mouseX = e.clientX; mouseY = e.clientY;
             cursorDot.style.left = `${mouseX}px`;
             cursorDot.style.top = `${mouseY}px`;
         });
 
         function animateCursor() {
-            // Linear Interpolation (Lerp) creates the smooth "lazy" trailing effect
             let distX = mouseX - outlineX;
             let distY = mouseY - outlineY;
-            
-            // Reduced from 0.15 to 0.06 to make the cursor trail lazier and smoother
-            outlineX += distX * 0.06; 
-            outlineY += distY * 0.06;
-
+            outlineX += distX * 0.08; 
+            outlineY += distY * 0.08;
             cursorOutline.style.left = `${outlineX}px`;
             cursorOutline.style.top = `${outlineY}px`;
-
             requestAnimationFrame(animateCursor);
         }
 
-        // Feature detection: Only activate on devices with a real mouse (ignore touchscreens)
         if (window.matchMedia("(pointer: fine)").matches) {
             animateCursor();
-            
-            // Expand outline when hovering over interactive elements
             const interactives = document.querySelectorAll('a, button, iframe');
             interactives.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorOutline.classList.add('hover');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorOutline.classList.remove('hover');
-                });
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
             });
         } else {
-            // Hide custom cursors for touch users to prevent it getting stuck on tap
             cursorDot.style.display = 'none';
             cursorOutline.style.display = 'none';
         }
