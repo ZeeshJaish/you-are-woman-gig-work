@@ -391,7 +391,7 @@
         .expect-section { padding: var(--section-padding); }
         .expect-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -583,6 +583,7 @@
             .about-section { grid-template-columns: 1fr; text-align: center; }
             .about-content h2 { text-align: center; }
             .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+            .expect-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: 1fr; max-width: 500px; }
             .pricing-card.featured { transform: scale(1); }
             .pricing-card.featured:hover { transform: translateY(-10px); }
@@ -596,6 +597,7 @@
         @media (max-width: 600px) {
             :root { --section-padding: 4rem 1rem; }
             .speakers-grid { grid-template-columns: 1fr; max-width: 320px; margin: 3rem auto 0; }
+            .expect-grid { grid-template-columns: 1fr; }
             .btn-primary { width: 100%; padding: 1.2rem 1rem; font-size: 1.1rem; }
             .video-container { height: 220px; }
             .ticket-price { font-size: 3rem; }
