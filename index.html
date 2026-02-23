@@ -374,7 +374,6 @@
             align-items: center;
             background: rgba(0,0,0,0.2);
             border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         .about-content h2 { text-align: left; margin-bottom: 1.5rem; }
         .about-content p { margin-bottom: 1.5rem; font-size: 1.1rem; }
@@ -385,6 +384,24 @@
             border-radius: 4px;
             border: 1px solid var(--gold-dark);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* --- 3.5 The Vision Section --- */
+        .vision-section {
+            max-width: 900px;
+            text-align: center;
+            padding-top: 2rem;
+            padding-bottom: 6rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .vision-quote {
+            margin: 3rem auto;
+            max-width: 650px;
+            padding: 2.5rem 2rem;
+            border-left: 3px solid var(--gold-mid);
+            border-right: 3px solid var(--gold-mid);
+            background: rgba(26, 5, 10, 0.5);
+            border-radius: 4px;
         }
 
         /* --- 4. What to Expect Section --- */
@@ -601,6 +618,7 @@
             .btn-primary { width: 100%; padding: 1.2rem 1rem; font-size: 1.1rem; }
             .video-container { height: 220px; }
             .ticket-price { font-size: 3rem; }
+            .vision-quote { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -660,34 +678,45 @@
     <section class="container about-section reveal">
         <div class="about-content reveal delay-1">
             <span class="section-subtitle" style="text-align: left;">The Mission</span>
-            <h2 class="section-title gold-text" style="text-align: left; font-size: clamp(2rem, 3.5vw, 2.8rem);">The Vision Behind You Are Woman</h2>
-            <p><strong>You Are Woman</strong> was birthed in prayer — not ambition.</p>
-            <p>Pastor Tabitha Taylor, founder of Kingdom of God Healing Center, stands as a testimony of the restoring power of Jesus Christ. She has known rejection. She has known insecurity. She has walked through seasons where identity felt buried under pain and misunderstanding.</p>
-            <p>But through the grace of God, Jesus renewed her mind, restored her worth, and rebuilt her from the inside out.</p>
-            
-            <div style="margin: 2rem 0; padding-left: 1.5rem; border-left: 3px solid var(--gold-mid);">
-                <p style="color: var(--gold-light); font-weight: 500; margin-bottom: 0.8rem; font-style: italic;">What once felt like breaking was preparation.</p>
-                <p style="color: var(--text-white); margin-bottom: 0; line-height: 1.6;">
-                    Every trial became training.<br>
-                    Every wound became wisdom.<br>
-                    Every season became assignment.
-                </p>
-            </div>
+            <h2 class="section-title gold-text" style="text-align: left; font-size: clamp(2rem, 4vw, 3rem);">What is You Are Woman?</h2>
+            <p><strong>You Are Woman</strong> is a sacred gathering designed specifically for women seeking a profound touch from God. It is an intentional space created for healing, restoration, and the rediscovery of your God-given identity.</p>
+            <p>Whether you are in a season of waiting, a season of healing, or stepping into a new level of purpose, this conference is for you. We are gathering to break chains, renew minds, and empower you to walk confidently in who you were created to be.</p>
+            <p>This isn't just another event on the calendar. It's a transformative weekend marked by authentic community, powerful worship, and uncompromised truth.</p>
+        </div>
+        <div class="reveal delay-2">
+            <!-- Placeholder for an emotional worship/gathering image -->
+            <img src="https://placehold.co/600x450/2A0810/D4AF37?text=Emotional+Gathering+Image" alt="Women worshiping" class="about-image">
+        </div>
+    </section>
 
-            <p>This conference is not about elevating a woman — it is about lifting up Jesus Christ, the One who heals, restores, and calls His daughters higher. For such a time as this, God is reminding women who they are.</p>
-            <p>And Pastor Tabitha stands not as a personality, but as a witness:</p>
-            
-            <p style="font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-mid); font-weight: 600; line-height: 1.5; margin-top: 1.5rem;">
+    <!-- 3.5 The Vision Section -->
+    <section class="container vision-section reveal">
+        <span class="section-subtitle">The Vision</span>
+        <h2 class="section-title gold-text">Behind You Are Woman</h2>
+        
+        <p><strong>You Are Woman</strong> was birthed in prayer — not ambition.</p>
+        <p>Pastor Tabitha Taylor, founder of Kingdom of God Healing Center, stands as a testimony of the restoring power of Jesus Christ. She has known rejection. She has known insecurity. She has walked through seasons where identity felt buried under pain and misunderstanding.</p>
+        <p>But through the grace of God, Jesus renewed her mind, restored her worth, and rebuilt her from the inside out.</p>
+        
+        <div class="vision-quote reveal delay-1">
+            <p style="color: var(--gold-light); font-weight: 500; margin-bottom: 1rem; font-style: italic; font-size: 1.2rem;">What once felt like breaking was preparation.</p>
+            <p style="color: var(--text-white); margin-bottom: 0; line-height: 1.8; font-size: 1.1rem;">
+                Every trial became training.<br>
+                Every wound became wisdom.<br>
+                Every season became assignment.
+            </p>
+        </div>
+
+        <p class="reveal delay-1">This conference is not about elevating a woman — it is about lifting up Jesus Christ, the One who heals, restores, and calls His daughters higher. For such a time as this, God is reminding women who they are.</p>
+        <p class="reveal delay-2" style="margin-top: 1.5rem;">And Pastor Tabitha stands not as a personality, but as a witness:</p>
+        
+        <div class="reveal delay-3" style="margin-top: 3rem;">
+            <p style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold-mid); font-weight: 600; line-height: 1.5;">
                 Healing is real.<br>
                 Freedom is real.<br>
                 Identity in Christ can be recovered.
             </p>
-            
-            <p style="margin-top: 1rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim);">To God be the glory.</p>
-        </div>
-        <div class="reveal delay-2">
-            <!-- Placeholder for an emotional worship/gathering image -->
-            <img src="https://placehold.co/600x650/2A0810/D4AF37?text=Emotional+Gathering+Image" alt="Women worshiping" class="about-image">
+            <p style="margin-top: 2rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-dim);">To God be the glory.</p>
         </div>
     </section>
 
